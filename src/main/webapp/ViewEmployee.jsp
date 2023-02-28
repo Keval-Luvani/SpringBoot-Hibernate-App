@@ -14,6 +14,7 @@
 		      <th>Age</th>
 		      <th>Salary</th>
 		      <th>Joining Date</th>
+		      <th>Skills</th>
 		      <th>Action</th>
 	      </tr>
 	      <c:forEach items="${employeeList}" var="employee" varStatus="row">
@@ -23,6 +24,7 @@
 		       <td>${employee.getAge()} </td>
 		       <td>${employee.getSalary()} </td>
 		       <td>${employee.getJoiningDate()} </td>
+		       <td>${employee.getSkill().toString().replace("[","").replace("]","")}</td>
 		       <td>
 		       	 <a href='<c:url value="update${employee.getEmployeeId()}"></c:url>'>Update</a>
 		         <a href='<c:url value="delete${employee.getEmployeeId()}"></c:url>'>Delete</a>

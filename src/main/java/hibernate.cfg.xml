@@ -13,5 +13,6 @@
 			<property name="show_sql">true</property>
 			<property name="format_sql">true</property>
 			<mapping  class="com.keval.SpringHibernateApp.model.Employee" />
+			<mapping  class="com.keval.SpringHibernateApp.model.Skill" />
 		</session-factory>
 	</hibernate-configuration>

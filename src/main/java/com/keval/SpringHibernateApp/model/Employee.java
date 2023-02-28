@@ -1,9 +1,15 @@
 package com.keval.SpringHibernateApp.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Employee {
@@ -14,6 +20,12 @@ public class Employee {
 	private int age;
 	private float salary;
 	private String joiningDate;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="employee",cascade = CascadeType.ALL)
+	private List<Skill> Skill;
+	
+	@Transient
+	private List<String> skillList;
 	
 	public int getEmployeeId() {
 		return employeeId;
@@ -50,9 +62,17 @@ public class Employee {
 		this.joiningDate = joiningDate;
 	}
 	
-	@Override
-	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", name=" + name + ", age=" + age + ", salary=" + salary
-				+ ", joiningDate=" + joiningDate +"]";
+	public List<Skill> getSkill() {
+		return Skill;
+	}
+	public void setSkill(List<Skill> skill) {
+		Skill = skill;
+	}
+	
+	public List<String> getSkillList() {
+		return skillList;
+	}
+	public void setSkillList(List<String> skillList) {
+		this.skillList = skillList;
 	}
 }
