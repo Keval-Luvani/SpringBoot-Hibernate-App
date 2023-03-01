@@ -13,6 +13,7 @@ import com.keval.SpringHibernateApp.model.Employee;
 import com.keval.SpringHibernateApp.service.EmployeeService;
 
 @Controller
+@RequestMapping("/employee")
 public class EmployeeController {
 	
 	@Autowired
@@ -21,27 +22,27 @@ public class EmployeeController {
 	@RequestMapping("/view")
 	public String viewEmployee(Model model) {
 		model.addAttribute("employeeList",employeeserviceimpl.viewEmployee());
-		return "ViewEmployee.jsp";
+		return "../ViewEmployee.jsp";
 	}
 	
 	@RequestMapping("/create")
 	public String createPage(Model model) {
 		model.addAttribute("todayDate", LocalDate.now().toString());
 		model.addAttribute("employee",new Employee());
-		return "EmployeeDataEntry.jsp";
+		return "../EmployeeDataEntry.jsp";
 	}
 	
 	@RequestMapping("/update{employeeId}")
 	public String updatePage(Model model,@PathVariable int employeeId) {
 		model.addAttribute("todayDate", LocalDate.now().toString());
 		model.addAttribute("employee",employeeserviceimpl.fetchData(employeeId));
-		return "EmployeeDataEntry.jsp";
+		return "../EmployeeDataEntry.jsp";
 	}
 	
 	@RequestMapping("/delete{employeeId}")
 	public String Employee(@PathVariable int employeeId) {
 		employeeserviceimpl.deleteEmployee(employeeId);
-		return "redirect:view";
+		return "redirect:/employee/view";
 	}
 	
 	@RequestMapping(value="/submit", method= RequestMethod.POST)
@@ -51,6 +52,6 @@ public class EmployeeController {
 		}else {
 			employeeserviceimpl.updateEmployee(employee);
 		}
-		return "redirect:view";
+		return "redirect:/employee/view";
 	}
 }
