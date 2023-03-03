@@ -1,7 +1,6 @@
 package com.keval.SpringHibernateApp.dao;
 
 import java.util.List;
-
 import com.keval.SpringHibernateApp.model.Employee;
 
 public interface EmployeeDao {

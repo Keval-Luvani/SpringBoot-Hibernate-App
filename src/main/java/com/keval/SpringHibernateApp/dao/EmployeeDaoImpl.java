@@ -55,8 +55,6 @@ public class EmployeeDaoImpl implements EmployeeDao{
 	public void updateEmployee(Employee employee) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Query q  = session.createQuery("delete from Skill  where employee="+employee.getEmployeeId());
-		q.executeUpdate();
 		session.saveOrUpdate(employee);
 		session.getTransaction().commit();
 		session.close();
